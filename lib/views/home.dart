@@ -6,6 +6,16 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
+
+
+
+  @override
+  void initState(){
+
+    super.initState();
+  }
+
+
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -37,6 +47,32 @@ class _MyHomePageState extends State<MyHomePage> {
             ),
 
         ),
+      ),
+    );
+  }
+}
+
+class CategoryListTile extends StatelessWidget {
+
+  final String imageUrl;
+  final String title;
+  CategoryListTile(this.title,this.imageUrl);
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(20)
+      ),
+      child: Stack(
+        children: <Widget>[
+          Container(
+            child: Image.network(imageUrl),
+          ),
+          Container(
+            child: Text(title),
+          )
+        ],
       ),
     );
   }

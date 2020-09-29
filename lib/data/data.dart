@@ -30,28 +30,21 @@ List<CategoriesModel> getCategories(){
   categories.add(categoryModel);
   categoryModel = new CategoriesModel();
 
-  categoryModel.categoryImage="https://www.pexels.com/photo/black-road-bike-leaning-on-red-blue-and-white-wing-graffiti-wall-545008/";
-  categoryModel.categoriesName="Street Art";
+  categoryModel.categoryImage="https://www.pexels.com/photo/you-are-enough-text-669988/";
+  categoryModel.categoriesName="Motivation";
   categories.add(categoryModel);
   categoryModel = new CategoriesModel();
 
-  categoryModel.categoryImage="https://www.pexels.com/photo/black-road-bike-leaning-on-red-blue-and-white-wing-graffiti-wall-545008/";
-  categoryModel.categoriesName="Street Art";
+  categoryModel.categoryImage="https://www.pexels.com/photo/sky-space-milky-way-stars-110854/";
+  categoryModel.categoriesName="Cosmos";
   categories.add(categoryModel);
   categoryModel = new CategoriesModel();
 
-  categoryModel.categoryImage="https://www.pexels.com/photo/black-road-bike-leaning-on-red-blue-and-white-wing-graffiti-wall-545008/";
-  categoryModel.categoriesName="Street Art";
+  categoryModel.categoryImage="https://www.pexels.com/photo/photo-of-toronto-cityscape-at-night-2478248/";
+  categoryModel.categoriesName="City";
   categories.add(categoryModel);
   categoryModel = new CategoriesModel();
 
-  categoryModel.categoryImage="https://www.pexels.com/photo/black-road-bike-leaning-on-red-blue-and-white-wing-graffiti-wall-545008/";
-  categoryModel.categoriesName="Street Art";
-  categories.add(categoryModel);
-  categoryModel = new CategoriesModel();
 
-  categoryModel.categoryImage="https://www.pexels.com/photo/black-road-bike-leaning-on-red-blue-and-white-wing-graffiti-wall-545008/";
-  categoryModel.categoriesName="Street Art";
-  categories.add(categoryModel);
-  categoryModel = new CategoriesModel();
+  return categories;
 }
