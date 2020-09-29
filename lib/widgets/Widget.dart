@@ -5,6 +5,7 @@ import 'package:walli/model/wallpaper_Model.dart';
 Widget wallPapersList(List<wallpaperModel> wallpapers, context){
   return Expanded(
     child: Container(
+      color: Colors.grey.withOpacity(0.1),
         child: GridView.count(
             crossAxisCount: 2,
           childAspectRatio: 0.58,

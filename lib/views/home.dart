@@ -5,6 +5,7 @@ import 'package:walli/data/data.dart';
 import 'package:walli/model/categoriesModel.dart';
 import 'package:http/http.dart' as http;
 import 'package:walli/model/wallpaper_Model.dart';
+import 'package:walli/views/search.dart';
 import 'package:walli/widgets/Widget.dart';
 
 class MyHomePage extends StatefulWidget {
@@ -63,11 +64,18 @@ class _MyHomePageState extends State<MyHomePage> {
                           fontSize: 32
                         ),),
                         SizedBox(width: MediaQuery.of(context).size.width*0.42,),
-                        IconButton(icon: Icon(Icons.search,color: Color(0xFF270949),size: 30,), onPressed: null)
+                        IconButton(icon: Icon(Icons.search,color: Color(0xFF270949),size: 30,),
+                            onPressed: (){Navigator.push(context,
+                                MaterialPageRoute(
+                                    builder: (context){return Search();}
+                                    )
+                            );
+                        }
+                            )
                       ],
                     ),
                   ),
-                  SizedBox(height: MediaQuery.of(context).size.height*.05,),
+                  SizedBox(height: MediaQuery.of(context).size.height*.03,),
                   Container(
                     height: MediaQuery.of(context).size.height*.1,
                     child: ListView.builder(
@@ -84,7 +92,7 @@ class _MyHomePageState extends State<MyHomePage> {
                       },
                     ),
                   ),
-                  SizedBox(height: MediaQuery.of(context).size.height*.05,),
+                  SizedBox(height: MediaQuery.of(context).size.height*.03,),
                   wallPapersList(wallpapers,context)
                 ],
             ),
