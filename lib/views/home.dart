@@ -4,6 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:walli/data/data.dart';
 import 'package:walli/model/categoriesModel.dart';
 import 'package:http/http.dart' as http;
+import 'package:walli/model/wallpaper_Model.dart';
+import 'package:walli/widgets/Widget.dart';
 
 class MyHomePage extends StatefulWidget {
   @override
@@ -13,6 +15,7 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
 
   List<CategoriesModel> categories = new List();
+  List<wallpaperModel> wallpapers = new List();
 
   getTrendingWallPaper() async{
 
@@ -25,9 +28,13 @@ class _MyHomePageState extends State<MyHomePage> {
     Map<String, dynamic> jsonData = jsonDecode(response.body);
 
     jsonData["photos"].forEach((element){
+        wallpaperModel wallPaperModel = new wallpaperModel();
+        wallPaperModel = wallpaperModel.fromMap(element);
+        wallpapers.add(wallPaperModel);
+    });
+    setState(() {
 
     });
-
   }
 
 
@@ -51,11 +58,11 @@ class _MyHomePageState extends State<MyHomePage> {
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceAround,
                       children: <Widget>[
-                        Text("Walli",style: TextStyle(
+                        Text("Wallpaper",style: TextStyle(
                           color: Color(0xFF270949),
-                          fontSize: 34
+                          fontSize: 32
                         ),),
-                        SizedBox(width: MediaQuery.of(context).size.width*0.57,),
+                        SizedBox(width: MediaQuery.of(context).size.width*0.42,),
                         IconButton(icon: Icon(Icons.search,color: Color(0xFF270949),size: 30,), onPressed: null)
                       ],
                     ),
@@ -76,7 +83,9 @@ class _MyHomePageState extends State<MyHomePage> {
                         );
                       },
                     ),
-                  )
+                  ),
+                  SizedBox(height: MediaQuery.of(context).size.height*.05,),
+                  wallPapersList(wallpapers,context)
                 ],
             ),
 
@@ -127,3 +136,4 @@ class CategoryListTile extends StatelessWidget {
     );
   }
 }
+
