@@ -1,4 +1,9 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
+import 'package:walli/data/data.dart';
+import 'package:walli/model/categoriesModel.dart';
+import 'package:http/http.dart' as http;
 
 class MyHomePage extends StatefulWidget {
   @override
@@ -7,11 +12,29 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
 
+  List<CategoriesModel> categories = new List();
+
+  getTrendingWallPaper() async{
+
+    var response = await http.get("https://api.pexels.com/v1/curated?per_page=15&page=1",
+      headers: {
+      "Authorization" : apiKey
+      }
+      );
+
+    Map<String, dynamic> jsonData = jsonDecode(response.body);
+
+    jsonData["photos"].forEach((element){
+
+    });
+
+  }
 
 
   @override
   void initState(){
-
+    getTrendingWallPaper();
+    categories =getCategories();
     super.initState();
   }
 
@@ -28,7 +51,7 @@ class _MyHomePageState extends State<MyHomePage> {
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceAround,
                       children: <Widget>[
-                        Text("Wallx",style: TextStyle(
+                        Text("Walli",style: TextStyle(
                           color: Color(0xFF270949),
                           fontSize: 34
                         ),),
@@ -39,9 +62,20 @@ class _MyHomePageState extends State<MyHomePage> {
                   ),
                   SizedBox(height: MediaQuery.of(context).size.height*.05,),
                   Container(
-                    width: MediaQuery.of(context).size.width,
-                    height: MediaQuery.of(context).size.height*.15,
-                    color: Colors.red,
+                    height: MediaQuery.of(context).size.height*.1,
+                    child: ListView.builder(
+                      padding: EdgeInsets.only(left: 12.0,bottom: 5.0,right: 12.0),
+                      scrollDirection: Axis.horizontal,
+                      physics: BouncingScrollPhysics(),
+                      itemCount: categories.length,
+                      shrinkWrap: true,
+                      itemBuilder: (context,index){
+                        return CategoryListTile(
+                          title: categories[index].categoriesName,
+                          imageUrl: categories[index].categoryImage,
+                        );
+                      },
+                    ),
                   )
                 ],
             ),
@@ -56,21 +90,37 @@ class CategoryListTile extends StatelessWidget {
 
   final String imageUrl;
   final String title;
-  CategoryListTile(this.title,this.imageUrl);
+  CategoryListTile({@required this.title,this.imageUrl});
 
   @override
   Widget build(BuildContext context) {
     return Container(
+      height: MediaQuery.of(context).size.height*.1,
+      margin: EdgeInsets.only(right: 10.0),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(20)
       ),
       child: Stack(
         children: <Widget>[
-          Container(
-            child: Image.network(imageUrl),
+          ClipRRect(
+            borderRadius: BorderRadius.circular(25),
+            //clipBehavior: ,
+            child: Image.network(imageUrl,width: MediaQuery.of(context).size.width*0.3,fit: BoxFit.cover,),
           ),
           Container(
-            child: Text(title),
+            decoration: BoxDecoration(
+              color: Colors.black26,
+              borderRadius: BorderRadius.circular(25)
+            ),
+            
+            width: MediaQuery.of(context).size.width*0.3,
+            alignment: Alignment.center,
+            child: Text(title,
+            style: TextStyle(
+              color: Colors.white,
+              fontWeight: FontWeight.w800
+              ),
+            ),
           )
         ],
       ),
