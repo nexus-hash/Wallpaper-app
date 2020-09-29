@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:walli/model/wallpaper_Model.dart';
+import 'package:walli/views/imageView.dart';
 
 Widget wallPapersList(List<wallpaperModel> wallpapers, context) {
   return Expanded(
@@ -17,14 +18,20 @@ Widget wallPapersList(List<wallpaperModel> wallpapers, context) {
         children: wallpapers.map((wallpaper) {
   if (wallpapers.length != null){
           return GridTile(
-              child: Container(
+              child: GestureDetector(
+              onTap: (){
+            Navigator.of(context).push(MaterialPageRoute(builder: (context){return ImageView(imageUrl: wallpaper.src.portrait,);}));
+          },
+          child: Hero(
+          tag: wallpaper.src.portrait,
+          child: Container(
             child: ClipRRect(
                 borderRadius: BorderRadius.circular(20.0),
                 child: Image.network(
                   wallpaper.src.portrait,
                   fit: BoxFit.cover,
                 )),
-          ));}
+          ))));}
   else {
     return Text("No images found");
   }

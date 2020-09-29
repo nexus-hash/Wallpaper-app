@@ -9,6 +9,8 @@ import 'package:walli/views/category.dart';
 import 'package:walli/views/search.dart';
 import 'package:walli/widgets/Widget.dart';
 
+import 'imageView.dart';
+
 class MyHomePage extends StatefulWidget {
   @override
   _MyHomePageState createState() => _MyHomePageState();
@@ -128,14 +130,15 @@ class CategoryListTile extends StatelessWidget {
         child: Stack(
           children: <Widget>[
             ClipRRect(
-              borderRadius: BorderRadius.circular(25),
-              //clipBehavior: ,
-              child: Image.network(
-                imageUrl,
-                width: MediaQuery.of(context).size.width * 0.3,
-                fit: BoxFit.cover,
-              ),
-            ),
+                  borderRadius: BorderRadius.circular(25),
+                  //clipBehavior: ,
+                  child: Image.network(
+                    imageUrl,
+                    width: MediaQuery.of(context).size.width * 0.3,
+                    fit: BoxFit.cover,
+                  ),
+                ),
+
             Container(
               decoration: BoxDecoration(
                   color: Colors.black26, borderRadius: BorderRadius.circular(25)),
